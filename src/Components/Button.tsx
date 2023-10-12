@@ -1,11 +1,16 @@
 import React from 'react'
-import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  GestureResponderEvent,
+} from 'react-native'
 
 interface Props {
-  onPress: any
+  onPress: (event: GestureResponderEvent) => string
 }
 
-export default function Button({ onPress }: Props) {
+export function Button({ onPress }: Props) {
   return (
     <TouchableOpacity
       style={styles.button}

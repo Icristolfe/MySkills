@@ -1,21 +1,24 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
   Platform,
-  TouchableOpacity,
+  FlatList,
 } from 'react-native'
-import Button from '../Components/Button'
-import SkillCard from '../Components/SkillCard'
+import { Button } from '../Components/Button'
+import { SkillCard } from '../Components/SkillCard'
 
 export function Home() {
   const [newSkill, setNewSkill] = useState('')
   const [mySkills, setMySkills] = useState<string[]>([])
 
-  function handleAddNewSkill(newSkill: string) {
-    setMySkills((oldState) => [...oldState, newSkill])
+  function handleAddNewSkill() {
+    if (newSkill) {
+      setMySkills((oldSkills) => [...oldSkills, newSkill])
+      setNewSkill('')
+    }
   }
 
   return (
@@ -31,9 +34,12 @@ export function Home() {
       <Button onPress={handleAddNewSkill} />
 
       <Text style={[styles.tittle, { marginVertical: 50 }]}>My Skills</Text>
-      {mySkills.map((skill) => (
-        <SkillCard skill={skill} />
-      ))}
+
+      <FlatList
+        data={mySkills}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => <SkillCard key={item} skill={item} />}
+      />
     </View>
   )
 }

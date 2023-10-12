@@ -5,9 +5,12 @@ interface SkillProps {
   skill: string
 }
 
-export default function SkillCard({skill}: SkillProps) {
+export function SkillCard({ skill, ...rest }: SkillProps) {
+  console.log('Mensagem de log simples')
+  console.log(skill)
+
   return (
-    <TouchableOpacity key={skill} style={styles.buttonSkill}>
+    <TouchableOpacity {...rest} style={styles.buttonSkill}>
       <Text style={styles.textSkill}>{skill}</Text>
     </TouchableOpacity>
   )
