@@ -1,23 +1,19 @@
 import React from 'react'
 import {
   TouchableOpacity,
+  TouchableOpacityProps,
   Text,
   StyleSheet,
-  GestureResponderEvent,
 } from 'react-native'
 
-interface Props {
-  onPress: (event: GestureResponderEvent) => string
+interface ButtonProps extends TouchableOpacityProps {
+  title: string
 }
 
-export function Button({ onPress }: Props) {
+export function Button({ title, ...rest }: ButtonProps) {
   return (
-    <TouchableOpacity
-      style={styles.button}
-      activeOpacity={0.7}
-      onPress={onPress}
-    >
-      <Text style={styles.buttonText}>Add</Text>
+    <TouchableOpacity style={styles.button} activeOpacity={0.7} {...rest}>
+      <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   )
 }

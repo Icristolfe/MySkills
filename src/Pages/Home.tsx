@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   View,
   Text,
@@ -10,20 +10,44 @@ import {
 import { Button } from '../Components/Button'
 import { SkillCard } from '../Components/SkillCard'
 
+interface SkillData {
+  id: string
+  name: string
+}
+
 export function Home() {
   const [newSkill, setNewSkill] = useState('')
-  const [mySkills, setMySkills] = useState<string[]>([])
+  const [mySkills, setMySkills] = useState<SkillData[]>([])
+  const [gretting, setGretting] = useState('')
 
   function handleAddNewSkill() {
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    }
     if (newSkill) {
-      setMySkills((oldSkills) => [...oldSkills, newSkill])
+      setMySkills((oldSkills) => [...oldSkills, data])
       setNewSkill('')
     }
   }
 
+  useEffect(() => {
+    const currentHour = new Date().getHours()
+    console.log(currentHour)
+    if (currentHour < 12) {
+      setGretting('Good Morning')
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGretting('Good Morning')
+    } else {
+      setGretting('Good Night')
+    }
+  }, [])
+
   return (
     <View style={styles.container}>
       <Text style={styles.tittle}>Welcome, Cristolfe</Text>
+
+      <Text style={styles.grettings}>{gretting}</Text>
 
       <TextInput
         style={styles.input}
@@ -31,14 +55,14 @@ export function Home() {
         placeholderTextColor='#555'
         onChangeText={setNewSkill}
       />
-      <Button onPress={handleAddNewSkill} />
+      <Button title='Add' onPress={handleAddNewSkill} />
 
       <Text style={[styles.tittle, { marginVertical: 50 }]}>My Skills</Text>
 
       <FlatList
         data={mySkills}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <SkillCard key={item} skill={item} />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <SkillCard key={item.id} skill={item.name} />}
       />
     </View>
   )
@@ -63,5 +87,8 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 15 : 10,
     marginTop: 30,
     borderRadius: 7,
+  },
+  grettings: {
+    color: '#FFF',
   },
 })
