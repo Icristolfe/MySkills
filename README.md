@@ -8,7 +8,7 @@
 </p>
 
 
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/196553482@N03/53266926760/in/dateposted-public/" title="Screenshot_1697292424"><img src="https://live.staticflickr.com/65535/53266926760_f6ff87ab1a_o.png" width="1080" height="2280" alt="Screenshot_1697292424"/></a>
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/196553482@N03/53266926760/in/dateposted-public/" title="Screenshot_1697292424"><img src="https://live.staticflickr.com/65535/53266926760_f6ff87ab1a_o.png" width="400" height="600" alt="Screenshot_1697292424"/></a>
 
 ## Criador do Projeto
 <table>
