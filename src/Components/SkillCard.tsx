@@ -11,6 +11,7 @@ interface SkillProps extends TouchableOpacityProps {
 }
 
 export function SkillCard({ skill, ...rest }: SkillProps) {
+  console.log(skill)
   return (
     <TouchableOpacity {...rest} style={styles.buttonSkill}>
       <Text style={styles.textSkill}>{skill}</Text>
